@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+
+//router-dom
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+//pages
+import Home from "./pages/home";
+import Nopage from "./pages/nopage";
+import Users from "./pages/users";
+import User from "./pages/user";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-full">
+      <Router>
+        <header className="flex w-full justify-center bg-green-200">
+          <Link className=" m-2  p-2" to="/">
+            Home
+          </Link>
+          <Link className=" m-2 p-2" to="/users">
+            Users
+          </Link>
+          {/* <Link className=" m-2 p-2" to="/route1">
+            Route2
+          </Link> */}
+        </header>
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/users" exact element={<Users />} />
+          <Route path="/users/:id" exact element={<User />} />
+          {/* <Route path="/route1" exact element={<Store />} />
+          <Route path="/route2" exact element={<Store />} /> */}
+          <Route path="*" element={<Nopage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
